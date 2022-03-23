@@ -1,4 +1,5 @@
 .App {
+  background-color:lightblue;
   position: relative;
   text-align: center;
   z-index: 0;
@@ -33,11 +34,8 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.login-area {
+  border-style:outset;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }

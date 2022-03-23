@@ -4,6 +4,7 @@ import { ErrorModal } from './components/ErrorModal';
 import Button from './components/Button';
 import { useSelector, useDispatch } from 'react-redux'
 import { counterActions } from './components/store/store';
+import Login from './components/Login';
 
 //an example of useReducer
 const modalReducer = (state, action) => {
@@ -55,7 +56,7 @@ function App() {
 
   return (
     <div className="App">
-      App
+      <Login/>
       <Button onClick={() => dispatchModal({ type: 'USER_ERROR_ONE_ENABLE', val: true })}>
         Overlay One
       </Button>
