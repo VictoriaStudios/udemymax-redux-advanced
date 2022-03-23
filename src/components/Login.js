@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Button from './Button'
-import { authAuctions } from './store/store'
+import { authActions } from './store/authSlice'
 
 const Login = () => {
 
@@ -10,8 +10,8 @@ const Login = () => {
 
     const loginHandler = (event) => {
         event.preventDefault()
-        if (loggedIn) dispatch(authAuctions.logout())
-        if (!loggedIn) dispatch(authAuctions.login())
+        if (loggedIn) dispatch(authActions.logout())
+        if (!loggedIn) dispatch(authActions.login())
 
     }
 

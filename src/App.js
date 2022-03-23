@@ -3,8 +3,8 @@ import { useState, useEffect, useReducer, useContext } from 'react';
 import { ErrorModal } from './components/ErrorModal';
 import Button from './components/Button';
 import { useSelector, useDispatch } from 'react-redux'
-import { counterActions } from './components/store/store';
 import Login from './components/Login';
+import { counterActions } from './components/store/counterSlice';
 
 //an example of useReducer
 const modalReducer = (state, action) => {
