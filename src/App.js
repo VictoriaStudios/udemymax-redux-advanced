@@ -2,8 +2,6 @@ import './App.css';
 import { useState, useEffect, useReducer, useContext } from 'react';
 import { ErrorModal } from './components/ErrorModal';
 import Button from './components/Button';
-import { testContext } from './components/store/TestProvider';
-import { ContextTester } from './components/ContextTester';
 import { useSelector, useDispatch } from 'react-redux'
 import { counterActions } from './components/store/store';
 
@@ -41,7 +39,6 @@ function App() {
 
   const [modalState, dispatchModal] = useReducer(modalReducer, { errorOneOpen: false, errorTwoOpen: false })
 
-  const ctx = useContext(testContext)
   const toolkitState = useSelector (state => state)
   const counter = useSelector((state) => state.counter)
   const showCounter = useSelector((state) => state.showCounter)
@@ -67,17 +64,6 @@ function App() {
       </Button>
       {modalState.errorOneOpen ? (<ErrorModal onClose={() => dispatchModal({ type: 'USER_ERROR_ONE_ENABLE', val: false })} header={"header1"} />) : ("")}
       {modalState.errorTwoOpen ? (<ErrorModal onClose={() => dispatchModal({ type: 'USER_ERROR_TWO_ENABLE', val: false })} header={"header2"} />) : ("")}
-      {!ctx.loggedIn ? (
-        <>
-          <ContextTester message="Not logged in" />
-          <Button onClick={() => ctx.dispatchDetails({ type: "LOG_IN" })}>Log in</Button>
-        </>
-      ) : (
-        <>
-          <ContextTester message="Logged in" />
-          <Button onClick={() => ctx.dispatchDetails("LOG_OUT")}>Log out</Button>
-        </>
-      )}
       {showCounter ? (
         <>
           <p>CountAmount: {counter}</p>
@@ -87,7 +73,6 @@ function App() {
           <Button onClick={() => dispatch(counterActions.decrement(5))}>Decrement by 5</Button>
         </>
       ) : ('')}
-
       <Button onClick={() => dispatch(counterActions.toggle())}>Toggle Handler</Button>
     </div>
   )
