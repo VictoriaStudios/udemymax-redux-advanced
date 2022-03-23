@@ -5,6 +5,7 @@ import Button from './components/Button';
 import { testContext } from './components/store/TestProvider';
 import { ContextTester } from './components/ContextTester';
 import { useSelector, useDispatch } from 'react-redux'
+import { counterActions } from './components/store/store';
 
 //an example of useReducer
 const modalReducer = (state, action) => {
@@ -41,21 +42,10 @@ function App() {
   const [modalState, dispatchModal] = useReducer(modalReducer, { errorOneOpen: false, errorTwoOpen: false })
 
   const ctx = useContext(testContext)
+  const toolkitState = useSelector (state => state)
   const counter = useSelector((state) => state.counter)
   const showCounter = useSelector((state) => state.showCounter)
   const dispatch = useDispatch()
-
-  const incrementHandler = (amount) => {
-    dispatch({ type: 'INCREMENT', val: amount })
-  }
-
-  const decrementHandler = (amount) => {
-    dispatch({ type: 'DECREMENT', val: amount })
-  }
-
-  const toggleHandler = () => {
-    dispatch({ type: 'TOGGLE_COUNTER' })
-  }
 
   useEffect(() => {
     if (localStorage.getItem('error') === 'true') dispatchModal({ type: 'USER_ERROR_ONE_ENABLE', val: true })
@@ -91,14 +81,14 @@ function App() {
       {showCounter ? (
         <>
           <p>CountAmount: {counter}</p>
-          <Button onClick={() => incrementHandler(1)}>Increment</Button>
-          <Button onClick={() => incrementHandler(5)}>Increment by 5</Button>
-          <Button onClick={() => decrementHandler(1)}>Decrement</Button>
-          <Button onClick={() => decrementHandler(5)}>Decrement by 5</Button>
+          <Button onClick={() => dispatch(counterActions.increment(1))}>Increment</Button>
+          <Button onClick={() => dispatch(counterActions.increment(5))}>Increment by 5</Button>
+          <Button onClick={() => dispatch(counterActions.decrement(1))}>Decrement</Button>
+          <Button onClick={() => dispatch(counterActions.decrement(5))}>Decrement by 5</Button>
         </>
       ) : ('')}
 
-      <Button onClick={() => toggleHandler()}>Toggle Handler</Button>
+      <Button onClick={() => dispatch(counterActions.toggle())}>Toggle Handler</Button>
     </div>
   )
 }
