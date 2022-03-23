@@ -35,6 +35,8 @@
 }
 
 .login-area {
+  height:30%;
+  position: relative;
   border-style:outset;
   margin-top: 2rem;
   margin-bottom: 2rem;

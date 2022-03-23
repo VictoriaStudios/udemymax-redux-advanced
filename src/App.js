@@ -40,9 +40,8 @@ function App() {
 
   const [modalState, dispatchModal] = useReducer(modalReducer, { errorOneOpen: false, errorTwoOpen: false })
 
-  const toolkitState = useSelector (state => state)
-  const counter = useSelector((state) => state.counter)
-  const showCounter = useSelector((state) => state.showCounter)
+  const counter = useSelector((state) => state.counter.counter)
+  const showCounter = useSelector((state) => state.counter.showCounter)
   const dispatch = useDispatch()
 
   useEffect(() => {

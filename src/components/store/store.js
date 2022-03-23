@@ -1,14 +1,18 @@
 import { createSlice, configureStore } from '@reduxjs/toolkit'
 import { act } from 'react-dom/test-utils'
 
-const initialState = {
+const initialCounterState = {
     counter: 0,
     showCounter: true
 }
 
+const initialAuthState = {
+    loggedIn: false
+}
+
 const counterSlice = createSlice ({
     name: 'counter',
-    initialState: initialState,
+    initialState: initialCounterState,
     reducers: {
         increment (state, action) {
             state.counter+= action.payload
@@ -22,10 +26,24 @@ const counterSlice = createSlice ({
     }
 })
 
+const authSlice = createSlice ({
+    name: 'auth',
+    initialState: initialAuthState,
+    reducers: {
+        login (state) {
+            state.loggedIn = true
+        },
+        logout (state) {
+            state.loggedIn = false
+        }
+    }
+})
+
 export const counterActions = counterSlice.actions
+export const authAuctions = authSlice.actions
 
 const reduxStore = configureStore({
-    reducer:  counterSlice.reducer
+    reducer:  {counter: counterSlice.reducer, auth: authSlice.reducer}
 })
 
 export default reduxStore
